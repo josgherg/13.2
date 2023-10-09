@@ -1,0 +1,233 @@
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 48    
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+    background-color: rgb(104, 103, 103);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+nav{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;   
+    width: 100%
+}
+#titulo1{
+    font-size: 30px;
+    margin-top: 10px;
+    color: white;
+}
+.boton1{
+    width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 0;
+        background-color: rgb(226, 226, 232);
+}
+.enfatizada{
+    border-color: rgb(226, 226, 232);
+    animation-name: animac;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: initial;
+    animation-direction: normal;
+    animation-timing-function: ease;
+    animation-fill-mode: backwards;
+}
+
+@keyframes animac{
+    0% {
+        border-color: rgb(255, 0, 0);
+    }
+
+    50% {
+        border-color: rgb(226, 226, 232);
+    }
+    100% {
+        border-color: rgb(226, 226, 232);
+    }
+}
+
+
+.contenedor0{ 
+    background-image:linear-gradient(to bottom, rgb(181, 218, 215),  rgb(78, 211, 235), rgb(231, 101, 8),rgb(231, 101, 8));
+}
+
+.contenedor1{
+    background-image:linear-gradient(to bottom, rgb(37, 188, 173),  rgb(37, 188, 173), rgb(231, 101, 8),rgb(231, 101, 8));
+}
+.contenedor2{
+    background-image:linear-gradient(to bottom, rgb(50, 139, 131),  rgb(50, 139, 131), rgb(231, 101, 8),rgb(231, 101, 8));
+}
+.contenedor3{
+    background-image:linear-gradient(to bottom, rgb(52, 105, 101),  rgb(52, 105, 101), rgb(231, 101, 8),rgb(231, 101, 8));
+}
+.contenedor4{
+    background-image:linear-gradient(to bottom, rgb(51, 71, 70),  rgb(51, 71, 70), rgb(231, 101, 8),rgb(231, 101, 8));
+}
+.contenedor5{
+    background-image:linear-gradient(to bottom, rgb(47, 54, 53),  rgb(47, 54, 53), rgb(47, 54, 53),rgb(233, 53, 29),rgb(231, 101, 8));
+}
+.contenedor6{
+    background-image:linear-gradient(to bottom, rgb(47, 54, 53),  rgb(47, 54, 53),rgb(68, 43, 39),rgb(233, 53, 29),rgb(231, 101, 8));
+}
+
+
+
+/*RESPONSIVE*/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    nav{
+        height: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #titulo1{
+        font-size: 20px;
+        margin-top: 10px;
+        color: white;
+    }
+    .basica{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        border-width: 5px;
+        border-style: ridge;
+        border-color: rgb(226, 226, 232);
+    }
+    #ppt{
+        width: 300px;
+    }
+    #salida{
+        width: 300px;
+        height: 500px;
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+        letter-spacing: 2px;
+        word-spacing: 5px;
+        background-color: rgb(104, 103, 103);
+        border-width: 0;
+    }
+    #botones{
+        height: 80px;
+        width: 300px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+ 
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .basica{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        border-width: 5px;
+        border-style: ridge;
+        border-color: rgb(226, 226, 232);
+    }
+    #ppt{
+        width: 500px;
+    }
+    #salida{
+        width: 500px;
+        height: 500px;
+        color: white;
+        font-size: 15px;
+        padding: 5px;
+        letter-spacing: 2px;
+        word-spacing: 5px;
+        background-color: rgb(104, 103, 103);
+        border-width: 0;
+    }
+    #botones{
+        height: 80px;
+        width: 500px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+#iniciar{
+    position: relative;
+}
+
+input{
+    background-color: red;
+    border: 0;
+    width: 10px;
+    position:absolute;
+    color:transparent;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    #ppt{
+        width: 700px;
+    }
+    .basica{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 700px;
+        border-width: 10px;
+        border-style: ridge;
+        border-color: rgb(226, 226, 232);
+    }
+    #salida{
+        width: 700px;
+        height: 500px;
+        color: white;
+        font-size: 20px;
+        padding:10px;
+        letter-spacing: 3px;
+        word-spacing: 10px;
+        background-color: rgb(104, 103, 103);
+        border-width: 0;
+    }
+    
+    #botones{
+        height:80px;
+        width: 700px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}
+
