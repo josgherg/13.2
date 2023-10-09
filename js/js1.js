@@ -7,6 +7,8 @@ let Iniciar = document.getElementById('iniciar');
 let Reiniciar = document.getElementById('reiniciar');
 let Finalizar = document.getElementById('finalizar');
 let areaLetras = document.getElementById('letras');
+let entrada;
+
 
 let palavras = ['curso',
                 'comida',
@@ -22,8 +24,9 @@ let max_int=6, j=0, letras = 0;
 let palavra = [];
 let letra = '', pos_letra, jugar= false, seguir = true, terminado=false, selec;
 
-function ahorcado(letra){
-    pos_letra = selec.indexOf(letra);
+function ahorcado(e){
+    let letra= e.value;
+    pos_letra = selec.indexOf(letra.toLowerCase());
     if (pos_letra == -1){
         cont.classList.remove(`contenedor${j}`);
         cont.classList.add(`contenedor${++j}`);
@@ -32,14 +35,16 @@ function ahorcado(letra){
         setTimeout(()=>{
             cont.classList.remove('enfatizada');
         },1000);
-        areaSalida.textContent=`La Letra ${letra} no esta en la palabra.\nRestan ${selec.length-letras} letras.\n\n ${palavra.join('')}`;
+        areaSalida.textContent=`La Letra ${letra} no esta en la palabra.\nRestan ${selec.length-letras} letras.\n ${palavra.join('')}`;
+        areaLetras.removeChild(e);
     } 
     else {
         selec=selec.replace(letra,"*"); 
         palavra[pos_letra]=letra;
         letras++;
         if (letras==selec.length) seguir= false;
-        areaSalida.textContent=`La Letra ${letra} esta en la palabra.\nRestan ${selec.length-letras} letras.\n\n ${palavra.join('')}`;
+        areaSalida.textContent=`La Letra ${letra} esta en la palabra.\nRestan ${selec.length-letras} letras.\n ${palavra.join('')}`;
+        areaLetras.removeChild(e);
     }
     
     if (j==max_int) seguir= false;    
@@ -59,76 +64,122 @@ function ahorcado(letra){
 Iniciar.addEventListener('click',()=>{
     if(!jugar){
         selec=palavras[Math.floor(Math.random()*palavras.length)].toLowerCase();
-        console.log(selec);
         let word=[];
-        for (let i=0;i<selec.length*2; i++){
+        for (let i=0;i<selec.length+7; i++){
             word.push('');
         }
         for (let i=0; i<selec.length; i++){
-            
+            palavra.push('*');
             let cambiado=false;
             do{
                 let comparar=Math.floor(Math.random()*word.length);
                 if (word[comparar]==''){
                     word[comparar]=selec[i];
-                    cambiado=true;
-                    console.log('secambio')
-                    console.log(word);
+                    cambiado=true;       
                 }
             }while(!cambiado);
-    
         }
         for (let i=0; i<word.length; i++){
                 if (word[i]==''){
                     word[i]= String.fromCharCode(97 + Math.floor(Math.random()*(123-97)));
-                    console.log(word);
                 }
-    
-    
         }
+        areaSalida.textContent="Comienza el juego\nPalabra de "+selec.length+" letras.\n"+palavra.join('')+"\nSuerte!!";
+        let temporal=[];
+        for ( let i=0; i<word.length; i++){
+            let nuevoE=document.createElement('input');
+            nuevoE.id = `letra${i}`;
+            nuevoE.type = 'button';
+            nuevoE.value = word[i];
+            nuevoE.classList.add('boton2');
+            temporal.push(nuevoE);
+            areaLetras.appendChild(nuevoE);
+        }
+        entrada=Array.from(document.getElementsByClassName('boton2'));
+        areaLetras.style.display='flex';
+        jugar= true; 
 
-        //palavra=word;
-        //areaSalida.textContent="Comienza el juego\nPalabra de "+selec.length+" letras.\n\n"+palavra.join('')+"\n\nSuerte!!";
-        jugar= true;
+        for (let i=0;  i <entrada.length; i++) {
+            entrada[i].addEventListener('click',(e)=>{
+                if(jugar){
+                    if (seguir){
+                        let regex=/^[A-Za-z]{1}$/;
+                        if(e.target.value.match(regex)){
+                            
+                            ahorcado(entrada[i]);
+                        }
+                    }
+                    else{
+                        terminado=true;
+                    }
+                }
+            })
+        }
     }
-    
 });
 
 Reiniciar.addEventListener('click',()=>{
     if(jugar){
+        entrada=Array.from(document.getElementsByClassName('boton2'));
+        palavra=[];
+        for (let i=0;i<entrada.length; i++){
+            areaLetras.removeChild(entrada[i]);
+        }
         selec=palavras[Math.floor(Math.random()*palavras.length)].toLowerCase();
-        console.log(selec);
         let word=[];
-        for (let i=0;i<selec.length*2; i++){
+        for (let i=0;i<selec.length+7; i++){
             word.push('');
         }
         for (let i=0; i<selec.length; i++){
-            
+            palavra.push('*');
             let cambiado=false;
             do{
                 let comparar=Math.floor(Math.random()*word.length);
                 if (word[comparar]==''){
                     word[comparar]=selec[i];
-                    cambiado=true;
-                    console.log('secambio')
-                    console.log(word);
+                    cambiado=true;       
                 }
             }while(!cambiado);
-    
         }
         for (let i=0; i<word.length; i++){
                 if (word[i]==''){
                     word[i]= String.fromCharCode(97 + Math.floor(Math.random()*(123-97)));
-                    console.log(word);
                 }
-    
-    
         }
-        console.log(word);
-        //palavra=word;
-        //areaSalida.textContent="Comienza el juego\nPalabra de "+selec.length+" letras.\n\n"+palavra.join('')+"\n\nSuerte!!";;
-        cont.classList.remove(`contenedor${j}`);
+        areaSalida.textContent="Comienza el juego\nPalabra de "+selec.length+" letras.\n"+palavra.join('')+"\nSuerte!!";
+        let temporal=[];
+        for ( let i=0; i<word.length; i++){
+            let nuevoE=document.createElement('input');
+            nuevoE.id = `letra${i}`;
+            nuevoE.type = 'button';
+            nuevoE.value = word[i];
+            nuevoE.classList.add('boton2');
+            temporal.push(nuevoE);
+            areaLetras.appendChild(nuevoE);
+        }
+        entrada=Array.from(document.getElementsByClassName('boton2'));
+        areaLetras.style.display='flex';
+        jugar= true; 
 
+        for (let i=0;  i <entrada.length; i++) {
+            entrada[i].addEventListener('click',(e)=>{
+                if(jugar){
+                    if (seguir){
+                        let regex=/^[A-Za-z]{1}$/;
+                        if(e.target.value.match(regex)){
+                            
+                            ahorcado(entrada[i]);
+                        }
+                    }
+                    else{
+                        terminado=true;
+                    }
+                }
+            })
+        }
+    
+        jugar= true;
+        cont.classList.remove(`contenedor${j}`);
         cont.classList.add('contenedor0');
         ImgC.src=`images/1.png`;
         jugar= true;
@@ -136,21 +187,6 @@ Reiniciar.addEventListener('click',()=>{
         j=0;
         seguir=true;
         terminado=false;
-    }
-});
-
-document.addEventListener('keydown',(letra)=>{
-    if(jugar){
-        if (seguir){
-            let regex=/^[A-Za-z]{1}$/;
-            if(letra.key.match(regex)){
-                console.log(letra.key);
-                ahorcado(letra.key.toLowerCase());
-            }
-        }
-        else{
-            terminado=true;
-        }
     }
 });
 
